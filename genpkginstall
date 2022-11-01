@@ -6,4 +6,4 @@ cd(@__DIR__)
 using Pkg
 Pkg.activate(".")
 using GenPkg
-GenPkg.main()
+GenPkg.install()

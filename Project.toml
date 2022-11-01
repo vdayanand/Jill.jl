@@ -1,3 +1,16 @@
+name = "GenPkg"
+uuid = "bf550708-77d7-440e-816e-84156dbd6276"
+authors = ["vdayanand <venkatesh@juliacomputing.com>"]
+version = "0.1.0"
+
 [deps]
 ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
 Mustache = "ffc61752-8dc7-55ee-8c37-f3e9cdd09e70"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

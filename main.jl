@@ -1,3 +1,5 @@
+module GenPkg
+
 using Mustache
 using ArgParse
 using UUIDs
@@ -35,4 +37,4 @@ function main()
     end
     mv(pkg_dir, pkg_name)
 end
-main()
+end
