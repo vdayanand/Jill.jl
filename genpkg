@@ -1,9 +1,6 @@
 #!/bin/bash
 #=
-exec julia --color=yes  --startup-file=no "${BASH_SOURCE[0]}" "$@"
+exec julia --color=yes --project=/Users/vdayanand/projects/GenPkg --startup-file=no "${BASH_SOURCE[0]}" "$@"
 =#
-cd(@__DIR__)
-using Pkg
-Pkg.activate(".")
 using GenPkg
 GenPkg.main()

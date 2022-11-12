@@ -3,7 +3,7 @@ module GenPkg
 using UUIDs
 using ArgParse
 using Mustache
-
+using TOML
 
 function parse_cli()
      s = ArgParseSettings()
@@ -13,6 +13,32 @@ function parse_cli()
              required = true
      end
      opts = parse_args(s)
+end
+
+function parse_cli_install()
+     s = ArgParseSettings()
+     @add_arg_table! s begin
+         "path"
+             help = "package name"
+             required = true
+     end
+     opts = parse_args(s)
+end
+
+function install()
+     pkgpath = parse_cli_install()["path"]
+     template_dir = @__DIR__
+     bin_tpl  = joinpath(template_dir, "bin.jl.tpl")
+     pkg_name = TOML.parsefile(joinpath(pkgpath, "Project.toml"))["name"]
+     binfile = joinpath(pkgpath,  lowercase(pkg_name))
+
+     open(binfile, "w") do f
+         write(f,  Mustache.render(read(bin_tpl, String),  Dict("PKG_NAME"=>pkg_name, "PKG_PATH"=>pkgpath)))
+     end
+     chmod(binfile, 0o755)
+     dest = joinpath(homedir(), "bin", lowercase(pkg_name))
+     ispath(dest) && error("Bin already exists")
+     run(`ln -fs $binfile $dest`)
 end
 
 function main()
@@ -36,11 +62,6 @@ function main()
      open(joinpath(pkg_dir, "test", "runtests.jl"), "w") do f
          write(f,  Mustache.render(read(test_tpl, String),  Dict("PKG_NAME"=>pkg_name)))
      end
-     bin_tpl  = joinpath(template_dir, "bin.jl.tpl")
-     open(joinpath(pkg_dir,  lowercase(pkg_name)), "w") do f
-         write(f,  Mustache.render(read(bin_tpl, String),  Dict("PKG_NAME"=>pkg_name)))
-     end
-     chmod(joinpath(pkg_dir,  lowercase(pkg_name)), 0o755)
      mv(pkg_dir, pkg_name)
 end
 end
