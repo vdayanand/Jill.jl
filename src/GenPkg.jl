@@ -15,12 +15,6 @@ function parse_cli()
      opts = parse_args(s)
 end
 
-function install()
-    pkg_name = parse_cli()["name"]
-    template_dir = @__DIR__
-    run(`cp $template_dir/bin.j `)
-end
-
 function main()
      pkg_name = parse_cli()["name"]
      template_dir = @__DIR__
@@ -42,6 +36,11 @@ function main()
      open(joinpath(pkg_dir, "test", "runtests.jl"), "w") do f
          write(f,  Mustache.render(read(test_tpl, String),  Dict("PKG_NAME"=>pkg_name)))
      end
+     bin_tpl  = joinpath(template_dir, "bin.jl.tpl")
+     open(joinpath(pkg_dir,  lowercase(pkg_name)), "w") do f
+         write(f,  Mustache.render(read(bin_tpl, String),  Dict("PKG_NAME"=>pkg_name)))
+     end
+     chmod(joinpath(pkg_dir,  lowercase(pkg_name)), 0o755)
      mv(pkg_dir, pkg_name)
 end
 end
