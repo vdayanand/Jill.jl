@@ -38,7 +38,7 @@ function install()
      chmod(binfile, 0o755)
      dest = joinpath(homedir(), "bin", lowercase(pkg_name))
      ispath(dest) && error("Bin already exists")
-     run(`ln -fs $binfile $dest`)
+     run(`mv $binfile $dest`)
 end
 
 function main()
