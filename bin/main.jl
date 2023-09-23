@@ -8,7 +8,7 @@ function main()
            help = "{create_package|create_exec|install_exec}"
            required = true
         "path"
-           help = "package of the package"
+           help = "path of the package project"
            required = true
     end
     options = parse_args(s)
