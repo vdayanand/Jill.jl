@@ -1,4 +1,4 @@
-module GenPkg
+module Jill
 
 using UUIDs
 using ArgParse
