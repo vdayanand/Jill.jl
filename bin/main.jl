@@ -2,7 +2,7 @@ using Jill
 using ArgParse
 
 function main()
-    s = ArgParseSettings()
+    s = ArgParseSettings(;usage="jill: simple application installer")
     @add_arg_table! s begin
         "op"
            help = "{create_package|create_exec|install_exec}"

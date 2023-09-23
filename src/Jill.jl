@@ -71,10 +71,17 @@ end
 function install(path)
     path = abspath(path)
     pkg_name = basename(path)
+    projectfile = joinpath(path, "Project.toml")
+    if isfile(projectfile)
+        proj = TOML.parsefile(projectfile)
+        pkg_name = proj["name"]
+    else
+        error("Project.toml is missing at $path")
+    end
     main_file = joinpath(path, "src", pkg_name *".jl")
     bin_file = joinpath(path, "bin", "main.jl")
     if !isfile(main_file) || !isfile(bin_file)
-        error("Not a julia application")
+        error("$path is not a julia application")
     end
     mainfile = abspath(bin_file)
     project = abspath(path)
