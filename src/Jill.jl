@@ -41,7 +41,12 @@ function create_exec_tree(pkg_name)
     isfile(binfile) && error("main.jl exists")
     template_dir = @__DIR__
     bin_tpl  = joinpath(template_dir, "binmain.jl.tpl")
-    pkg_name = TOML.parsefile("Project.toml")["name"]
+    proj = TOML.parsefile("Project.toml")
+    pkg_name = if haskey(proj, "name")
+        proj["name"]
+    else
+        error("Package Docgen seems to be missing name in its Project.toml")
+    end
     mkpath(dirname(binfile))
     touch(binfile)
     open(binfile, "w") do f
@@ -74,7 +79,11 @@ function install(path)
     projectfile = joinpath(path, "Project.toml")
     if isfile(projectfile)
         proj = TOML.parsefile(projectfile)
-        pkg_name = proj["name"]
+        if haskey(proj, "name")
+            pkg_name = proj["name"]
+        else
+            error("Package Docgen seems to be missing name in its Project.toml")
+        end
     else
         error("Project.toml is missing at $path")
     end
