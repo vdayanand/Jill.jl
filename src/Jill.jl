@@ -87,6 +87,9 @@ function install(path)
     else
         error("Project.toml is missing at $path")
     end
+    cd(path) do
+        Pkg.instantiate()
+    end
     main_file = joinpath(path, "src", pkg_name *".jl")
     bin_file = joinpath(path, "bin", "main.jl")
     if !isfile(main_file) || !isfile(bin_file)
