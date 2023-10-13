@@ -1,4 +1,4 @@
-# Jill: Simple Application Installer
+# Jill: Package/Application Installer
 
 ![Jill Logo](jill_logo.png)
 
@@ -19,55 +19,45 @@ jill [options]
 
 - `-path`: Specifies the path to the package project or executable. This option is required for all operations.
 
-## Getting Started
 
-1. **Installation**
-
+### Installation
    To use Jill, make sure you have it installed. You can install it using your favorite Julia package manager. For example, with Julia's built-in package manager:
 
    ```bash
-   julia -e 'using Pkg; Pkg.add("Jill")'
+   julia -e 'using Pkg; Pkg.add("Jill"); using Jill;Jill.install(dirname(dirname(Base.find_package("Jill))))'
    ```
 
-2. **Create a Package Project**
+### Create a new package
 
-   To create a new package project, use the following command:
+   To create a new package, use the following command:
 
    ```bash
-   jill -op create-package /path/to/package
+   jill create-package </path/to/package>
    ```
 
    Replace `/path/to/package` with the desired location for your new package project.
 
-3. **Generate an Executable**
+
+### Generate an application (package with bin/main.jl)
 
    To generate an executable, use the following command:
 
    ```bash
-   jill -op create-exec  /path/to/package
+   jill create-exec  /path/to/package
    ```
 
    Replace `/path/to/package` with the path to your package project.
 
-4. **Install a Package**
+
+### **Install a application**
 
    To install an existing package, use the following command:
 
    ```bash
-   jill -op install  /path/to/package
+   jill install  /path/to/application
    ```
 
-   Replace `/path/to/package` with the path to the package you want to install.
-
-## Example
-
-Here's an example of how to use Jill to create a new package project:
-
-```bash
-jill -op create-package  ~/my_new_package
-```
-
-This command will create a new package project in the `my_new_package` directory.
+   Replace `/path/to/application` with the path to the package you want to install. Make sure "~/.julia/bin" is added to PATH variable
 
 ## Contributing
 
