@@ -11,8 +11,7 @@ jill [options]
 ```
 
 ### Options
-
-- `-op`: Specifies the operation to perform. You can choose from the following options:
+Specifies the operation to perform. You can choose from the following options:
   - `create-package`: Create a new package project.
   - `create-exec`: Generate an executable.
   - `install`: Install an existing package.
