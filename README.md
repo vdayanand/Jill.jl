@@ -13,7 +13,7 @@ jill [options]
 ### Options
 Specifies the operation to perform. You can choose from the following options:
   - `create-package`: Create a new package project.
-  - `create-exec`: Generate an executable.
+  - `create-exec`: Generate an application.
   - `install`: Install an existing package.
 
 ### Installation
