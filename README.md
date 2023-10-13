@@ -23,6 +23,25 @@ Specifies the operation to perform. You can choose from the following options:
    julia -e 'using Pkg; Pkg.add("Jill"); using Jill;Jill.install(dirname(dirname(Base.find_package("Jill))))'
    ```
 
+#### Update PATH variable in Windows
+
+1. Open "Environment Variables" from the Start Menu.
+
+2. In "System Variables," find "Path," and click "Edit."
+
+3. Add your path, separated by semicolons.
+
+4. Save and reopen command prompts.
+
+#### Update PATH variable in macOS and Linux
+
+1. Open a terminal and edit your shell config file (e.g., `~/.bashrc`).
+
+2. Add `export PATH=$PATH:<PATH to your depot>` to the file. Replace `<PATH to your depot>` with full path to your Julia depot '~/.julia/bin'
+
+3. Save and run `source ~/.bashrc` or restart the terminal.
+
+
 ### Create a new package
 
    To create a new package, use the following command:
