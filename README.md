@@ -16,9 +16,6 @@ Specifies the operation to perform. You can choose from the following options:
   - `create-exec`: Generate an executable.
   - `install`: Install an existing package.
 
-- `-path`: Specifies the path to the package project or executable. This option is required for all operations.
-
-
 ### Installation
    To use Jill, make sure you have it installed. You can install it using your favorite Julia package manager. For example, with Julia's built-in package manager:
 
