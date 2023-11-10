@@ -17,12 +17,12 @@ Specifies the operation to perform. You can choose from the following options:
   - `install`: Install an existing package.
 
 ### Installation
-   To use Jill, make sure you have it installed. You can install it using your favorite Julia package manager. For example, with Julia's built-in package manager:
+   1. To use Jill, make sure you have it installed. You can install it using your favorite Julia package manager. For example, with Julia's built-in package manager:
 
    ```bash
    julia -e 'using Pkg; Pkg.add("Jill"); using Jill;Jill.install(dirname(dirname(Base.find_package("Jill))))'
    ```
-
+   2. Add `~/.julia/bin` directory to the PATH variable
 ### Create a new package
 
    To create a new package, use the following command:
